@@ -1,17 +1,15 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
+
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        LempelZivCompression lempelZivCompression = new LempelZivCompression();
+        LempelZivCompression lempelZivCompression = new LempelZivCompression("C:\\Users\\Vilhe\\IdeaProjects\\Oblig7\\Lempel-Ziv Compression\\lib\\opg7-2020.pdf",
+                "C:\\Users\\Vilhe\\IdeaProjects\\Oblig7\\Lempel-Ziv Compression\\lib\\FileOutTest.txt", 127, 4);
 
-        lempelZivCompression.readFile("C:\\Users\\Vilhe\\IdeaProjects\\Algoritmer og Datastrukturer oblig 7\\lib\\Test.txt");
+        lempelZivCompression.compress();
 
-        System.out.println(lempelZivCompression.getBytesInFile());
+
     }
 
 }
