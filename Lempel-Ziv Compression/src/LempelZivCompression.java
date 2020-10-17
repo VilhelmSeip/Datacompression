@@ -50,7 +50,7 @@ public class LempelZivCompression {
 
         for (int i = whereToStart; i <= (howFar - wordMinSize); i++){
             boolean located = true;
-            for (int j = i, k = 0; k < bytes.size(); j++, k++) {
+            for (int j = i, k = 0; k < distance_back; j++, k++) {
                 try {
                     if (tempBlock[j] != bytes.get(k)) {
                         located = false;
