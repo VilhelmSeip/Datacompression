@@ -10,7 +10,6 @@ public class LempelZivCompression {
     private byte[] bytesInFile;
     private byte[] compressed_bytes;
     private byte[] tempBlock;
-    private String inputFile;
     private String fileOut;
     private final int distance_back;
     private final int wordMinSize;
@@ -34,6 +33,7 @@ public class LempelZivCompression {
     private void readFile(String file) throws IOException {
         try {
             bytesInFile = Files.readAllBytes(Paths.get(file));
+            compressed_bytes = new byte[bytesInFile.length];
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -115,15 +115,13 @@ public class LempelZivCompression {
                             compressionStartIndex = compressionPlace;
                             compressionLength = presentBytes.size();
                         } else break;
-                        ;
                     }
                 }
 
 
                 if (compressionFound) {
                     int uncompressed = compressionIndex - bytesFinished;
-
-                    compressed_bytes[bufferindex] = (byte) -uncompressed;
+                    compressed_bytes[bufferindex] = (byte)uncompressed;
 
                     bufferindex++;
 
@@ -171,9 +169,9 @@ public class LempelZivCompression {
         }
     }
 
-    public void compress(String inputFile, String fileOut){
-        this.inputFile = inputFile;
+    public void compress(String inputFile, String fileOut) throws IOException {
         this.fileOut = fileOut;
+        readFile(inputFile);
         compress();
     }
 
