@@ -1,2 +1,17 @@
-this is a test
+1.1
+A process means a program in execution while a thread is a segment of a process. This means a process can have multiple threads which can contain a process. Processes are controlled by the process control block, which contains information about the process such as Process priority, process id, process state, register, cpu etc. A thread has three states: running, ready and blocked. 
+
+1.2
+We must consider that a process is much larger than a thread, because of this it is not good to be switching between processes as there is too much information in a process that would have to be saved and reloaded each time the CPU decides to switch processes. A thread on the other hand is smaller and so it is better for switching. A process  may have multiple threads than run concurrently, meaning not at the same time, but run together and switch between them. This kind of switching offers advantages because a thread won't have as much information to store/reload. 
+
+If your system only has one core it could be beneficial to use processes as you can only do concurrent execution. If you on the other hand have multiple cores you  can use threads to run on different cores and thus have simultaneous execution. 
+
+1.3
+A thread block controller is a data structure within the operating system kernel which contains crucial thread-specific information needed to manage it. This is information such as: Thread identifier, stack pointer, program counter, state of thread, thread’s register values and pointer to the process control block. Because we need all this in a thread, we need the thread block controller. 
+
+1.4
+In a cooperative scheduling style, the tasks manage their own life cycles. After being assigned to a thread, it is up to the task whether it should be released from a thread or not. The schedulers job is to assign tasks to any thread that is free. If there are no free threads, the scheduler has to wait until one becomes available. That is the reason it is called cooperative, the tasks should cooperate with each other to ensure everyone gets a fair share of threads.  
+
+In the preemptive scheduling style, the scheduler has more control over the tasks. Not only does the scheduler assign a task to a thread, but it also assigns a sime slice for the task. A task is removed  from the thread when it yields, or when it has used its time slice. When the time is up, the scheduler interrupts the task in favor of another task while the original task have to wait for its turn again. With this approach the scheduler can maintain a degree of fairness to all tasks. The preemptive scheduling style does not come without disadvantages unfortunately. Since a task can be interrupted midway, we need to be able to store and restore the state of the interrupted task. So that when the task is runned again, it can continue from where it left off. 
+This process of storing and restoring the state of the task is called a context switch. 
 

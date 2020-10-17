@@ -51,10 +51,12 @@ public class LempelZivCompression {
         for (int i = whereToStart; i <= (howFar - wordMinSize); i++){
             boolean located = true;
             for (int j = i, k = 0; k < bytes.size(); j++, k++) {
-                if (tempBlock[j] != bytes.get(k)){
-                    located = false;
-                    break;
-                }
+                try {
+                    if (tempBlock[j] != bytes.get(k)) {
+                        located = false;
+                        break;
+                    }
+                }catch (Exception e){ }
             }
 
             if (located){
